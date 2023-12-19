@@ -8,7 +8,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "prepublish": "npm run build"
+    "release:commit": "./release-commit.sh",
+    "release:publish": "./release-publish.sh"
   },
   "keywords": [],
   "author": "",
