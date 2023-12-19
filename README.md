@@ -18,7 +18,7 @@ const { createHTTP2Adapter } = require('axios-http2-adapter');
 axios.defaults.adapter = createHTTP2Adapter();
 ```
 
-### With custom adapter configuration:
+### Configuration:
 
 ```javascript
 const axios = require('axios');
@@ -37,5 +37,5 @@ axios.defaults.adapter = createHTTP2Adapter(adapterConfig);
 This project is licensed under the [MIT License](https://github.com/uibakery/axios-http2-adapter/blob/master/LICENSE).
 
 ## Acknowledgements
-axios
-http2-wrapper
+[axios](https://github.com/axios/axios)
+[http2-wrapper](https://github.com/szmarczak/http2-wrapper)
