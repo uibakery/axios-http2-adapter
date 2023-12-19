@@ -11,13 +11,13 @@ if [ -z "$VERSION_BUMP_TYPE" ]; then
     exit 1
 fi
 
-git checkout -b release/v$(node -p "require('./package.json').version")
-
 npm version $VERSION_BUMP_TYPE
 
 npm run build
 
 npm test
+
+git checkout -b release/v$(node -p "require('./package.json').version")
 
 git add .
 
