@@ -1,1 +1,1 @@
-export { createHTTP2Adapter } from "./adapter";
+export { createHTTP2Adapter } from './adapter';

@@ -3,9 +3,9 @@ import {
   AxiosPromise,
   getAdapter,
   InternalAxiosRequestConfig,
-} from "axios";
-import * as http2 from "http2-wrapper";
-import { wrap } from "follow-redirects";
+} from 'axios';
+import * as http2 from 'http2-wrapper';
+import { wrap } from 'follow-redirects';
 
 export interface HTTP2AdapterConfig {
   // configure custom agent https://github.com/szmarczak/http2-wrapper?tab=readme-ov-file#new-http2agentoptions
@@ -25,7 +25,7 @@ async function http2Adapter(
   config: InternalAxiosRequestConfig,
   adapterConfig: Partial<HTTP2AdapterConfig>
 ): AxiosPromise<unknown> {
-  const adapter: AxiosAdapter = getAdapter("http");
+  const adapter: AxiosAdapter = getAdapter('http');
 
   if (await shouldUseHTTP2(config, adapterConfig)) {
     const http2Config: InternalAxiosRequestConfig = createHTTP2Config(
@@ -54,7 +54,7 @@ async function isHTTP2Supported(
   const url: URL = new URL(config.url!);
 
   // HTTP2 doesn't support not secured connection.
-  if (!url.protocol.startsWith("https:")) {
+  if (!url.protocol.startsWith('https:')) {
     return false;
   }
 
@@ -63,11 +63,11 @@ async function isHTTP2Supported(
       host: url.host,
       servername: url.hostname,
       port: url.port || 443,
-      ALPNProtocols: ["h2", "http/1.1"],
+      ALPNProtocols: ['h2', 'http/1.1'],
       rejectUnauthorized: false,
     });
 
-    return res.alpnProtocol === "h2";
+    return res.alpnProtocol === 'h2';
   } catch (e) {
     return false;
   }
@@ -89,8 +89,9 @@ function createHTTP2Config(
         const req: http2.ClientRequest = http2.request(options, handleResponse);
 
         const origOn = req.on.bind(req);
+        // Omit the socket.setKeepAlive axios action, as HTTP/2 sockets should not be manipulated directly.
         req.on = (name: string, ...args: unknown[]) => {
-          if (name != "socket") {
+          if (name != 'socket') {
             return origOn(name, ...args);
           }
           return req;
