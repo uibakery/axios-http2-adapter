@@ -51,7 +51,7 @@ async function shouldUseHTTP2(
 async function isHTTP2Supported(
   config: InternalAxiosRequestConfig
 ): Promise<boolean> {
-  const url: URL = new URL(config.url!);
+  const url: URL = new URL(config.url!, config.baseURL);
 
   // HTTP2 doesn't support not secured connection.
   if (!url.protocol.startsWith('https:')) {
