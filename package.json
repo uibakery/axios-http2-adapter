@@ -48,6 +48,6 @@
     "http2-wrapper": "~2.2"
   },
   "peerDependencies": {
-    "axios": "~1.8"
+    "axios": "^1.9"
   }
 }
