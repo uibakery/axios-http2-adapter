@@ -7,9 +7,10 @@
   "license": "MIT",
   "author": "",
   "scripts": {
-    "test": "npm run test:eslint && npm run test:mocha",
+    "test": "npm run test:eslint && npm run test:mocha && npm run test:exports",
     "test:mocha": "mocha test/unit/**/*.js --timeout 30000 --exit",
     "test:eslint": "eslint lib/**/*.js",
+    "test:exports": "mocha test/module/test.js --timeout 30000 --exit",
     "build": "gulp clear && cross-env NODE_ENV=production rollup -c -m",
     "fix": "eslint --fix lib/**/*.js",
     "prepare": "husky install && npm run prepare:hooks",
